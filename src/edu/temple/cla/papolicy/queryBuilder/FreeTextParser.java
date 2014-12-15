@@ -13,10 +13,14 @@ public class FreeTextParser {
      * @param token The key word or phrase to be sought.
      * @return
      */
-    static Like createLike(String textColumn, String token) {
+    static Expression createLike(String textColumn, String token) {
         if (token.startsWith("\"")) {
+            int length = token.length();
+            if (length < 2) {
+                return new EmptyExpression();
+            }
             token = token.substring(1, token.length() - 1);
-        }
+        } 
         return new Like(textColumn, "%" + token + "%");
     }
 

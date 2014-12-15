@@ -32,7 +32,8 @@ public class FreeTextParseTest {
             {"text LIKE(\'%foo%\') AND text LIKE(\'%bar%\')", "text", "foo and bar"},
             {"(text LIKE(\'%foo%\') OR text LIKE(\'%bar%\'))", "text", "foo or bar"},
             {"text LIKE(\'%foo bar%\')", "text", "\"foo bar\""},
-            {"(text LIKE(\'%foo bar%\') OR text LIKE(\'%baz%\'))", "text", "\"foo bar\" or baz"}
+            {"(text LIKE(\'%foo bar%\') OR text LIKE(\'%baz%\'))", "text", "\"foo bar\" or baz"},
+            {"text LIKE(\'%art%\')", "text", "\" art "}
         });
     }
 
