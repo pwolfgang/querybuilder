@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.temple.cla.papolicy.queryBuilder;
+package edu.temple.cla.policydb.queryBuilder;
 
 /**
  * An expression is a logical expression used in the WHERE clause

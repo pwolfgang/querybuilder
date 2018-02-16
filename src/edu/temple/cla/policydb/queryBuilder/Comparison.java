@@ -1,4 +1,4 @@
-package edu.temple.cla.papolicy.queryBuilder;
+package edu.temple.cla.policydb.queryBuilder;
 
 /**
  * A Comparison compares two values.

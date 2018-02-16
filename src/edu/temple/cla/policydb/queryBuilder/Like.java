@@ -1,4 +1,4 @@
-package edu.temple.cla.papolicy.queryBuilder;
+package edu.temple.cla.policydb.queryBuilder;
 
 /**
  * The Like expression determines if a value matches or does not match

@@ -1,4 +1,4 @@
-package edu.temple.cla.papolicy.queryBuilder;
+package edu.temple.cla.policydb.queryBuilder;
 /**
  * The Between class represents a range.  It generates the
  * expression BETWEEN lowValue AND hiValue

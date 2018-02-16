@@ -2,8 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.temple.cla.papolicy.queryBuilder;
+package edu.temple.cla.policydb.queryBuilder;
 
+import edu.temple.cla.policydb.queryBuilder.Comparison;
+import edu.temple.cla.policydb.queryBuilder.Composite;
+import edu.temple.cla.policydb.queryBuilder.Disjunction;
+import edu.temple.cla.policydb.queryBuilder.Expression;
+import edu.temple.cla.policydb.queryBuilder.Conjunction;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

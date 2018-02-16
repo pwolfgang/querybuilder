@@ -1,4 +1,4 @@
-package edu.temple.cla.papolicy.queryBuilder;
+package edu.temple.cla.policydb.queryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

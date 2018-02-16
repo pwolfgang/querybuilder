@@ -3,8 +3,9 @@
  * and open the template in the editor.
  */
 
-package edu.temple.cla.papolicy.queryBuilder;
+package edu.temple.cla.policydb.queryBuilder;
 
+import edu.temple.cla.policydb.queryBuilder.FreeTextParser;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.Test;
