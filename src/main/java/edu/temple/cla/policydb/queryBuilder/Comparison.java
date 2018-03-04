@@ -37,9 +37,9 @@ package edu.temple.cla.policydb.queryBuilder;
  */
 public class Comparison implements Expression {
     
-    private String lhs;
-    private String operator;
-    private String rhs;
+    private final String lhs;
+    private final String operator;
+    private final String rhs;
     
     /**
      * Construct a Comparison

@@ -215,6 +215,7 @@ public class QueryBuilder implements Cloneable {
     /**
      * Make a copy of this QueryBuilder object.
      * Since all fields are immutable, a shallow copy is adequate.
+     * This swallows the CloneNotSupportedException which is impossible.
      * @return A copy of this object.
      */
     @Override

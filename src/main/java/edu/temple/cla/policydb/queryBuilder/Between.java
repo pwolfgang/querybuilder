@@ -37,9 +37,9 @@ package edu.temple.cla.policydb.queryBuilder;
  */
 public class Between implements Expression {
     
-    private String column;
-    private String lowValue;
-    private String hiValue;
+    private final String column;
+    private final String lowValue;
+    private final String hiValue;
     
     /**
      * Create a Between instance
