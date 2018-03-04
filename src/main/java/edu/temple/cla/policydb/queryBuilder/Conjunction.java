@@ -56,6 +56,7 @@ public class Conjunction extends Composite {
      * Otherwise return the terms separated by AND
      * @return 
      */
+    @Override
     public String toStringNoParen() {
         return toString(" AND ", true);
     }
