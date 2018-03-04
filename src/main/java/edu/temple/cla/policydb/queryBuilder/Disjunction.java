@@ -42,7 +42,7 @@ public class Disjunction extends Composite {
      * If there are no terms, return an empty string
      * If there is only one term, return that term
      * Otherwise return the terms separated by OR
-     * @return 
+     * @return A string representation of this disjunction.
      */
     @Override
     public String toString() {

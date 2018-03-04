@@ -88,7 +88,7 @@ public abstract class  Composite implements Expression {
      * terms separated by operator
      * @param operator The operator
      * @param noParen if true, then surrounding parentheses are not applied.
-     * @return
+     * @return A string representation of this composite.
      */
     public String toString(String operator, boolean noParen) {
         if (terms == null) {

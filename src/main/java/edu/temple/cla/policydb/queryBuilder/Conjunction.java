@@ -42,7 +42,7 @@ public class Conjunction extends Composite {
      * If there are no terms, return an empty string
      * If there is only one term, return that term
      * Otherwise return the terms separated by AND
-     * @return 
+     * @return A string representation of this conjunction.
      */
     @Override
     public String toString() {
@@ -54,7 +54,7 @@ public class Conjunction extends Composite {
      * If there are no terms, return an empty string
      * If there is only one term, return that term
      * Otherwise return the terms separated by AND
-     * @return 
+     * @return  A string representation of this conjunction without parentheses.
      */
     @Override
     public String toStringNoParen() {
