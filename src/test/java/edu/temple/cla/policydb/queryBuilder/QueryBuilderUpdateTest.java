@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2019, Temple University
  * All rights reserved.
  *
@@ -31,45 +31,41 @@
  */
 package edu.temple.cla.policydb.queryBuilder;
 
-import edu.temple.cla.policydb.queryBuilder.Comparison;
-import edu.temple.cla.policydb.queryBuilder.Composite;
-import edu.temple.cla.policydb.queryBuilder.Expression;
-import edu.temple.cla.policydb.queryBuilder.Conjunction;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
- * @author Paul Wolfgang
+ * @author Paul
  */
-public class ConjunctionTest {
-    
-    public ConjunctionTest() {
-    }
-
-    @Test
-    public void emptyConjunctionReturnsEmptyString() {
-        Expression e = new Conjunction();
-        assertEquals("", e.toString());
-    }
+public class QueryBuilderUpdateTest {
     
     @Test
-    public void singleTermReturnTerm() {
-        Composite c = new Conjunction();
-        c.addTerm(new Comparison("foo", "<>", "0"));
-        assertEquals("foo<>0", c.toString());
+    public void simpleUpdateTest() {
+        QueryBuilder queryBuilder = new QueryBuilder();
+        queryBuilder.setTable("NewsClips");
+        queryBuilder.addSetClause(new SetClause("CAPCode", 4));
+        queryBuilder.addSetClause(new SetClause("CAPOk", 0));
+        queryBuilder.addToSelectCriteria(new Comparison("Code", "=", "7"));
+        queryBuilder.addToSelectCriteria(FreeTextParser.parse("Abstract", "aquaculture or \"fish farm\""));
+        String updateQuery = queryBuilder.buildUpdate();
+        String expected = "UPDATE NewsClips SET CAPCode=4, CAPOk=0 "
+                + "WHERE Code=7 AND (Abstract LIKE('%aquaculture%') OR Abstract LIKE(\'%fish farm%'))";
+        assertEquals(expected, updateQuery);
     }
     
     @Test
-    public void multipleTerms() {
-        Composite c = new Conjunction();
-        c.addTerm(new Comparison("foo", "<>", "0"));
-        c.addTerm(new Comparison("bar", "<>", "0"));
-        c.addTerm(new Comparison("baz", "<>", "0"));
-        assertEquals("(foo<>0 AND bar<>0 AND baz<>0)", c.toString());
-    }
-    
-        
-
+    public void criteriaTestWithFilter() {
+        QueryBuilder queryBuilder = new QueryBuilder();
+        queryBuilder.setTable("NewsClips");
+        queryBuilder.addSetClause(new SetClause("CAPCode", 1));
+        queryBuilder.addSetClause(new SetClause("CAPOk", 0));
+        queryBuilder.addToSelectCriteria(new Comparison("Code", "=", "24"));
+        queryBuilder.addToSelectCriteria(FreeTextParser.parse("Abstract", "taxes or revenue"));
+        queryBuilder.addFilter(new Comparison("tax", "<>", "0"));
+        String expected = "UPDATE NewsClips SET CAPCode=1, CAPOk=0 WHERE "
+                + "Code=24 AND (Abstract LIKE('%taxes%') OR Abstract LIKE('%revenue%')) AND tax<>0";
+        assertEquals(expected, queryBuilder.buildUpdate());
+    } 
     
 }

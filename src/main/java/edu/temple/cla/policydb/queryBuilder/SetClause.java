@@ -31,45 +31,34 @@
  */
 package edu.temple.cla.policydb.queryBuilder;
 
-import edu.temple.cla.policydb.queryBuilder.Comparison;
-import edu.temple.cla.policydb.queryBuilder.Composite;
-import edu.temple.cla.policydb.queryBuilder.Expression;
-import edu.temple.cla.policydb.queryBuilder.Conjunction;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 /**
- *
+ * Represents a SET clause in an UPDATE statement.
  * @author Paul Wolfgang
  */
-public class ConjunctionTest {
+public class SetClause {
     
-    public ConjunctionTest() {
-    }
-
-    @Test
-    public void emptyConjunctionReturnsEmptyString() {
-        Expression e = new Conjunction();
-        assertEquals("", e.toString());
-    }
+    private final String target;
+    private final Object value;
     
-    @Test
-    public void singleTermReturnTerm() {
-        Composite c = new Conjunction();
-        c.addTerm(new Comparison("foo", "<>", "0"));
-        assertEquals("foo<>0", c.toString());
+    public SetClause(String target, Object value) {
+        this.target = target;
+        this.value = value;
     }
     
-    @Test
-    public void multipleTerms() {
-        Composite c = new Conjunction();
-        c.addTerm(new Comparison("foo", "<>", "0"));
-        c.addTerm(new Comparison("bar", "<>", "0"));
-        c.addTerm(new Comparison("baz", "<>", "0"));
-        assertEquals("(foo<>0 AND bar<>0 AND baz<>0)", c.toString());
+    @Override
+    public String toString() {
+        StringBuilder stb = new StringBuilder();
+        stb.append(target).append("=");
+        if (value instanceof Number) {
+            stb.append(value);
+        } else {
+            stb.append("'");
+            stb.append(value);
+            stb.append("'");
+        }
+        return stb.toString();
     }
     
-        
-
+    
     
 }

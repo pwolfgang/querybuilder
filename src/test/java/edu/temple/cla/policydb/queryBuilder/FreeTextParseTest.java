@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2018, Temple University
+ * Copyright (c) 2019, Temple University
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,7 +31,6 @@
  */
 package edu.temple.cla.policydb.queryBuilder;
 
-import edu.temple.cla.policydb.queryBuilder.FreeTextParser;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.Test;

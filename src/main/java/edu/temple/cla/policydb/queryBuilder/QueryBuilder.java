@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2018, Temple University
+ * Copyright (c) 2019, Temple University
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,6 +33,7 @@ package edu.temple.cla.policydb.queryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Class to build SQL queries.
@@ -53,6 +54,7 @@ public class QueryBuilder implements Cloneable {
     private Between between;
     private String groupBy;
     private String orderBy;
+    private List<SetClause> setClauses;
     
     /**
      * Build query
@@ -94,6 +96,26 @@ public class QueryBuilder implements Cloneable {
             sb.append(orderBy);
         }
         return sb.toString();
+    }
+    
+    /**
+     * Build and update query.
+     * @return An Update Query String.
+     */
+    public String buildUpdate() {
+        StringBuilder stb = new StringBuilder();
+        stb.append("UPDATE ");
+        stb.append(table);
+        StringJoiner sj = new StringJoiner(", ", " SET ", "");
+        setClauses.forEach(sc -> sj.add(sc.toString()));
+        stb.append(sj.toString());
+        stb.append(" WHERE ");
+        Conjunction selectAndFilters = new Conjunction();
+        selectAndFilters.addTerm(selectCriteria);
+        selectAndFilters.addTerm(filters);
+        selectAndFilters.addTerm(freeText);
+        stb.append(selectAndFilters.toStringNoParen());
+        return stb.toString();
     }
     
     /**
@@ -210,6 +232,17 @@ public class QueryBuilder implements Cloneable {
      */
     public void clearOrderBy() {
         this.orderBy = null;
+    }
+    
+    /**
+     * Add to the set clauses.
+     * @param setClause The set clause to be added to the list.
+     */
+    public void addSetClause(SetClause setClause) {
+        if (setClauses == null) {
+            setClauses = new ArrayList<>();
+        }
+        setClauses.add(setClause);
     }
     
     /**
