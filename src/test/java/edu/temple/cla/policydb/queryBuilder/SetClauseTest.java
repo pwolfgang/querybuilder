@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2019, Temple University
  * All rights reserved.
  *
@@ -31,45 +31,28 @@
  */
 package edu.temple.cla.policydb.queryBuilder;
 
-import edu.temple.cla.policydb.queryBuilder.Comparison;
-import edu.temple.cla.policydb.queryBuilder.Composite;
-import edu.temple.cla.policydb.queryBuilder.Expression;
-import edu.temple.cla.policydb.queryBuilder.Conjunction;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Paul Wolfgang
+ * @author Paul
  */
-public class ConjunctionTest {
+public class SetClauseTest {
     
-    public ConjunctionTest() {
+    public SetClauseTest() {
     }
 
     @Test
-    public void emptyConjunctionReturnsEmptyString() {
-        Expression e = new Conjunction();
-        assertEquals("", e.toString());
+    public void setNumber() {
+        SetClause setClause = new SetClause("x", 5);
+        assertEquals("x=5", setClause.toString());
     }
     
     @Test
-    public void singleTermReturnTerm() {
-        Composite c = new Conjunction();
-        c.addTerm(new Comparison("foo", "<>", "0"));
-        assertEquals("foo<>0", c.toString());
+    public void setString() {
+        SetClause setClause = new SetClause("name", "Foo");
+        assertEquals("name='Foo'", setClause.toString());
     }
-    
-    @Test
-    public void multipleTerms() {
-        Composite c = new Conjunction();
-        c.addTerm(new Comparison("foo", "<>", "0"));
-        c.addTerm(new Comparison("bar", "<>", "0"));
-        c.addTerm(new Comparison("baz", "<>", "0"));
-        assertEquals("(foo<>0 AND bar<>0 AND baz<>0)", c.toString());
-    }
-    
-        
-
     
 }
