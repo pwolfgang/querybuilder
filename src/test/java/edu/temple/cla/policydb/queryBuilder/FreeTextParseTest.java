@@ -31,7 +31,6 @@
  */
 package edu.temple.cla.policydb.queryBuilder;
 
-import edu.temple.cla.policydb.queryBuilder.FreeTextParser;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.Test;
